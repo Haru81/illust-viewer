@@ -8,14 +8,14 @@ import Title from './components/Title'
 
 function App() {
   return (
-    <div>
+    <>
       <Title />
       <IllustDisplay />
       <LeftButton />
       <RightButton />
       <PlusButton />
       <MinusButton />
-    </div>
+    </>
   )
 }
 
