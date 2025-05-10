@@ -1,6 +1,8 @@
-const PlusButton = () => {
+import { ButtonProps } from "../types/ButtonProps";
+
+const PlusButton = ({ onClick }: ButtonProps) => {
     return (
-        <button>+</button>
+        <button onClick={onClick}>+</button>
     );
 }
 

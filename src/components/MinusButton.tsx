@@ -1,6 +1,8 @@
-const MinusButton = () => {
+import { ButtonProps } from "../types/ButtonProps";
+
+const MinusButton = ({ onClick }: ButtonProps) => {
     return (
-        <button>-</button>
+        <button onClick={onClick}>-</button>
     );
 }
 
