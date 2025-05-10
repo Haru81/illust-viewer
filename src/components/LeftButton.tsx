@@ -1,20 +1,11 @@
-// import { useState } from "react"
+import { ButtonProps } from "../types/ButtonProps"
 
-const LeftButton = () => {
-  // const [val, setVal] = useState(0);
-
-  // const clickHandler = () => {
-  //   setVal(val+1);
-  // };
+const LeftButton = ({ onClick }: ButtonProps) => {
     return (
-      <div className='move-button'>
-        {/* <button onClick={clickHandler}>←</button>
-        <br></br>
-        {val} */
-        <button>←</button>
-        }
+      <div className="move-button">
+        <button onClick={onClick}>←</button>
       </div>
-  )
+    )
 }
 
 export default LeftButton
