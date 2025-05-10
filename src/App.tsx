@@ -48,6 +48,22 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const hWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      setScale(prev => {
+        const delta = e.deltaY > 0 ? -0.1 : 0.1;
+        const newScale = Math.min(Math.max(prev + delta, 0.1), 3);
+        return newScale;
+      });
+    };
+
+    window.addEventListener('wheel', hWheel, { passive: false });
+    return () => {
+      window.removeEventListener('wheel', hWheel);
+    };
+  }, []);
+
   return (
     <>
       <Title />
