@@ -18,10 +18,19 @@ const IllustDisplay = ({ src, scale }: Props) => {
         const img = new Image();
         img.src = src;
         img.onload = () => {
+            const canvasWidth = canvas.width;
+            const canvasHeight = canvas.height;
+
             ctx.setTransform(1, 0, 0, 1, 0, 0);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+            
+            const centerX = canvasWidth / 2;
+            const centerY = canvasHeight / 2;
+
+            ctx.translate(centerX, centerY);
             ctx.scale(scale, scale);
-            ctx.drawImage(img, 0, 0);
+            ctx.drawImage(img, -img.width / 2, -img.height / 2);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             {console.log(scale)}
         };
     }, [src, scale]);
