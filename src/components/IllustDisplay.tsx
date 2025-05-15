@@ -25,6 +25,35 @@ const IllustDisplay = forwardRef<HTMLCanvasElement, Props>(({ src, scale, setSca
         const img = new Image();
         img.src = src;
         img.onload = () => {
+            const scaleX = canvas.width / img.width;
+            const scaleY = canvas.height / img.height;
+            const initScale = Math.min(scaleX, scaleY, 1);
+            setScale(initScale);
+
+            setOffset({
+                x: canvas.width / 2,
+                y: canvas.height / 2
+            });
+
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.scale(initScale, initScale);
+            ctx.drawImage(img, -img.width / 2, -img.height / 2);
+        };
+    }, [src, setScale, setOffset]);
+
+        useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const img = new Image();
+        img.src = src;
+        img.onload = () => {
             ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
@@ -60,19 +89,6 @@ const IllustDisplay = forwardRef<HTMLCanvasElement, Props>(({ src, scale, setSca
         canvas.addEventListener('wheel', hWheel, { passive: false });
         return () => canvas.removeEventListener('wheel', hWheel);
     }, [scale, offset, setScale, setOffset]);
-
-    useEffect(() => {
-      setTimeout(() => {
-        const canvas = canvasRef.current;
-        if (canvas) {
-          setOffset({
-            x: canvas.width / 2,
-            y: canvas.height / 2,
-          });
-        }
-      }, 0);
-    }, [setOffset]);
-
 
     const hMouseDown = (e: React.MouseEvent) => {
         setDragging(true);
