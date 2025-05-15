@@ -5,3 +5,10 @@
   text-align: center;
 }
 
+.left-button {
+  text-align: left;
+}
+
+.right-button {
+  text-align: right;
+}
