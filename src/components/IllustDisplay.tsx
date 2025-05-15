@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 
 interface Props {
     src: string;
@@ -8,8 +8,10 @@ interface Props {
     setOffset: (o: { x: number; y: number }) => void;
 }
 
-const IllustDisplay = ({ src, scale, setScale, offset, setOffset }: Props) => {
+const IllustDisplay = forwardRef<HTMLCanvasElement, Props>(({ src, scale, setScale, offset, setOffset }, ref) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    useImperativeHandle(ref, () => canvasRef.current!);
+
     const [dragging, setDragging] = useState(false);
     const [lastPos, setLastPos] = useState({ x: 0, y: 0 });
 
@@ -59,6 +61,19 @@ const IllustDisplay = ({ src, scale, setScale, offset, setOffset }: Props) => {
         return () => canvas.removeEventListener('wheel', hWheel);
     }, [scale, offset, setScale, setOffset]);
 
+    useEffect(() => {
+      setTimeout(() => {
+        const canvas = canvasRef.current;
+        if (canvas) {
+          setOffset({
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+          });
+        }
+      }, 0);
+    }, [setOffset]);
+
+
     const hMouseDown = (e: React.MouseEvent) => {
         setDragging(true);
         setLastPos({ x: e.clientX, y: e.clientY });
@@ -89,6 +104,6 @@ const IllustDisplay = ({ src, scale, setScale, offset, setOffset }: Props) => {
             ></canvas>
         </div>
     );
-}
+});
 
 export default IllustDisplay
