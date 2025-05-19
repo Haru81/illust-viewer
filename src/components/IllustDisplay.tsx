@@ -72,15 +72,23 @@ const IllustDisplay = forwardRef<HTMLCanvasElement, Props>(({ src, scale, setSca
             const rect = canvas.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
-
-            const worldX = (mouseX - offset.x) / scale;
-            const worldY = (mouseY - offset.y) / scale;
-
+            
             const delta = e.deltaY > 0 ? -0.1 : 0.1;
             const newScale = Math.min(Math.max(scale + delta, 0.1), 3);
 
-            const newOffsetX = mouseX - worldX * newScale;
-            const newOffsetY = mouseY - worldY * newScale;
+            let pivotX = mouseX;
+            let pivotY = mouseY;
+            
+            if (newScale < 0.3) {
+                pivotX = canvas.width / 2;
+                pivotY = canvas.height / 2;
+            }
+
+            const worldX = (pivotX - offset.x) / scale;
+            const worldY = (pivotY - offset.y) / scale;
+
+            const newOffsetX = pivotX - worldX * newScale;
+            const newOffsetY = pivotY - worldY * newScale;
 
             setScale(newScale);
             setOffset({ x: newOffsetX, y: newOffsetY });
@@ -108,7 +116,7 @@ const IllustDisplay = forwardRef<HTMLCanvasElement, Props>(({ src, scale, setSca
     };
 
     return (
-        <div id="illust-container" style={{ width: 500, height: 500 }}>
+        <div id="illust-container" style={{ width: 500, height: 500, position: "relative" }}>
             <canvas
                 ref={canvasRef}
                 width={500}
@@ -117,6 +125,7 @@ const IllustDisplay = forwardRef<HTMLCanvasElement, Props>(({ src, scale, setSca
                 onMouseMove={hMouseMove}
                 onMouseUp={hMouseUp}
                 onMouseLeave={hMouseUp}
+                style={{ display: "block" }}
             ></canvas>
         </div>
     );
