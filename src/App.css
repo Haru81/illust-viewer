@@ -5,10 +5,34 @@
   text-align: center;
 }
 
-.left-button {
-  text-align: left;
+#viewer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 600px;
+  gap: 20px;
 }
 
-.right-button {
-  text-align: right;
+#illust-container {
+  position: relative;
+  width: 500px;  /* canvasの幅 */
+  height: 500px; /* canvasの高さ */
+  flex-shrink: 0;
+}
+
+#left-button, #right-button {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+}
+
+#zoom-controls {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
 }

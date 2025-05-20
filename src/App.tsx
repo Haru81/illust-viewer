@@ -4,7 +4,6 @@ import LeftButton from './components/LeftButton'
 import MinusButton from './components/MinusButton'
 import PlusButton from './components/PlusButton'
 import RightButton from './components/RightButton'
-import Title from './components/Title'
 import './App.css'
 
 const imgList = [
@@ -48,20 +47,27 @@ function App() {
   }, []);
 
   return (
-    <>
-      <Title />
-      <IllustDisplay
-        src={imgList[index]}
-        scale={scale}
-        setScale={setScale}
-        offset={offset}
-        setOffset={setOffset}
-      />
-      <LeftButton onClick={hPrev} />
-      <RightButton onClick={hNext} />
-      <PlusButton onClick={hZoomIn} />
-      <MinusButton onClick={hZoomOut} />
-    </>
+    <div id="viewer-container">
+      <div id='direction-controls'>
+        <LeftButton onClick={hPrev} />
+      </div>
+      <div>
+        <IllustDisplay
+          src={imgList[index]}
+          scale={scale}
+          setScale={setScale}
+          offset={offset}
+          setOffset={setOffset}
+        />
+        <div id='zoom-controls'>
+          <PlusButton onClick={hZoomIn} />
+          <MinusButton onClick={hZoomOut} />
+        </div>
+      </div>
+      <div>
+        <RightButton onClick={hNext} />
+      </div>
+    </div>
   )
 }
 
