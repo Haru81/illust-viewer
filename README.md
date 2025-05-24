@@ -1,15 +1,15 @@
 # Photo Viewer
 
-画像を閲覧・拡大縮小できるビューワーです。
-React + TypeScriptで開発されています。
-Reactの勉強用に作ったため、UIはシンプルで、左右ボタンで画像の切り替え、上の＋、-ボタンで拡大縮小ができます。
-また、キーボードの左右カーソルキーでも画像の切り替え、マウスホイールで拡大縮小することもできます。
+画像を閲覧・拡大縮小できるビューワーです。  
+React + TypeScriptで開発されています。  
+Reactの勉強用に作ったため、UIはシンプルで、左右ボタンで画像の切り替え、上の＋、-ボタンで拡大縮小ができます。  
+また、キーボードの左右カーソルキーでも画像の切り替え、マウスホイールで拡大縮小することもできます。  
 
 # Setup
 
-git clone https://github.com/Haru81/illust-viewer.git
-cd photo-viewer
-npm install
+git clone https://github.com/Haru81/illust-viewer.git  
+cd photo-viewer  
+npm install  
 npm run dev
 
 # React + TypeScript + Vite
