@@ -7,9 +7,10 @@ import RightButton from './components/RightButton'
 import './App.css'
 
 const imgList = [
-  '/test4.png',
-  '/test5.png',
-  '/test6.png',
+  'img/test1.PNG',
+  'img/test2.PNG',
+  'img/test3.PNG',
+  'img/test4.PNG',
 ];
 
 function App() {

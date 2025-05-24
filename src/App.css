@@ -10,14 +10,14 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 600px;
+  height: 720px;
   gap: 20px;
 }
 
 #illust-container {
   position: relative;
-  width: 500px;  /* canvasの幅 */
-  height: 500px; /* canvasの高さ */
+  width: 600px;  /* canvasの幅 */
+  height: 600px; /* canvasの高さ */
   flex-shrink: 0;
 }
 

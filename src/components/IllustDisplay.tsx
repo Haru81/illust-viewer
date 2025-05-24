@@ -116,11 +116,11 @@ const IllustDisplay = forwardRef<HTMLCanvasElement, Props>(({ src, scale, setSca
     };
 
     return (
-        <div id="illust-container" style={{ width: 500, height: 500, position: "relative" }}>
+        <div id="illust-container" style={{ width: 600, height: 600, position: "relative" }}>
             <canvas
                 ref={canvasRef}
-                width={500}
-                height={500}
+                width={600}
+                height={600}
                 onMouseDown={hMouseDown}
                 onMouseMove={hMouseMove}
                 onMouseUp={hMouseUp}
